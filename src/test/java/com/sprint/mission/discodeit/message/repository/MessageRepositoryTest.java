@@ -49,17 +49,18 @@ class MessageRepositoryTest extends IntegrationTestSupport {
         // given
         User user = userRepository.save(new User("", "", "", null));
         Channel channel = channelRepository.save(new Channel(ChannelType.PUBLIC, "", ""));
-        messageRepository.save(new Message(channel, user, "", List.of()));
+        Message firstSavedMessage = messageRepository.save(new Message(channel, user, "", List.of()));
         Message lastSavedMessage = messageRepository.save(new Message(channel, user, "", List.of()));
 
         // when
-        Optional<Instant> lastMessageCreatedAtByChannelId = messageRepository.findLastMessageCreatedAtByChannelId(channel.getId());
+        Optional<Message> lastMessageCreatedAtByChannelId = messageRepository.findLastMessageCreatedAtByChannelId(channel.getId());
 
         // then
         Assertions.assertThat(lastMessageCreatedAtByChannelId)
                 .isPresent()
                 .get()
-                .isEqualTo(lastSavedMessage.getCreatedAt());
+                .extracting(Message::getId)
+                .isEqualTo(lastSavedMessage.getId());
     }
 
     @DisplayName("채널에 저장된 메세지를 생성날짜 기준 내림차순으로 반환합니다.")
