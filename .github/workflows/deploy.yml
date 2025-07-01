@@ -2,6 +2,9 @@ name: AWS Deploy Pipeline
 
 on:
   workflow_dispatch:
+    inputs:
+      branch:
+        description: part3-황지환-sprint8
   push:
     branches:
       - part3-황지환-sprint7
@@ -22,6 +25,12 @@ jobs:
     steps:
       - name: 소스 체크아웃
         uses: actions/checkout@v4
+
+      - name: QEMU 설치 (멀티 플랫폼 지원)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Buildx 설치
+        uses: docker/setup-buildx-action@v3
 
       - name: AWS CLI 인증
         uses: aws-actions/configure-aws-credentials@v4
