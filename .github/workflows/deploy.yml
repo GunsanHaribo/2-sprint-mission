@@ -1,10 +1,9 @@
 name: AWS Deploy Pipeline
 
 on:
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: part3-황지환-sprint8
+  pull_request:
+    branches:
+      - part3-황지환-sprint7
   push:
     branches:
       - part3-황지환-sprint7
