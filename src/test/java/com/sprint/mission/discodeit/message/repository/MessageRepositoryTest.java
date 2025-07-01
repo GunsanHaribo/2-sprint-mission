@@ -1,5 +1,6 @@
 package com.sprint.mission.discodeit.message.repository;
 
+import com.sprint.mission.discodeit.IntegrationTestSupport;
 import com.sprint.mission.discodeit.domain.channel.entity.Channel;
 import com.sprint.mission.discodeit.domain.channel.entity.ChannelType;
 import com.sprint.mission.discodeit.domain.channel.repository.ChannelRepository;
@@ -14,20 +15,16 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
-@DataJpaTest
-@ActiveProfiles("test")
-class MessageRepositoryTest {
+class MessageRepositoryTest extends IntegrationTestSupport {
 
     @Autowired
     private MessageRepository messageRepository;
