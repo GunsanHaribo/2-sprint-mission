@@ -1,18 +1,19 @@
 name: AWS Deploy Pipeline
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - part3-황지환-sprint7
-  workflow_dispatch:
 
 env:
   ECR_REPOSITORY_URI: ${{ vars.ECR_REPOSITORY_URI }}
-  AWS_REGION: ${{ vars.AWS_REGION }}
   ECS_CLUSTER: ${{ vars.ECS_CLUSTER }}
   ECS_SERVICE: ${{ vars.ECS_SERVICE }}
   ECS_TASK_DEFINITION: ${{ vars.ECS_TASK_DEFINITION }}
   CONTAINER_NAME: ${{ vars.CONTAINER_NAME }}
+  AWS_REGION: us-east-1
+  AWS_DEFAULT_REGION: us-east-1
 
 jobs:
   build-and-push:
@@ -57,7 +58,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: 현재 태스크 정의 다운로드
+      - name: 타켓 태스크-def 다운로드
         run: |
           aws ecs describe-task-definition \
             --task-definition ${{ env.ECS_TASK_DEFINITION }} \
