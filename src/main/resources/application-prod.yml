@@ -5,14 +5,14 @@ spring:
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
-      maximum-pool-size: 10
-      minimum-idle: 5
+      maximum-pool-size: 20
+      minimum-idle: 10
       idle-timeout: 60000
 
 server:
-  port: 8080
+  port: 80
 
 logging:
   level:
-    com.sprint.mission.discodeit: debug
-    org.hibernate.SQL: debug
+    com.sprint.mission.discodeit: info
+    org.hibernate.SQL: info
