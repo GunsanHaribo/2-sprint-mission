@@ -28,10 +28,8 @@ class MessageRepositoryTest extends IntegrationTestSupport {
 
     @Autowired
     private MessageRepository messageRepository;
-
     @Autowired
     private ChannelRepository channelRepository;
-
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -63,7 +61,6 @@ class MessageRepositoryTest extends IntegrationTestSupport {
                 .get()
                 .isEqualTo(lastSavedMessage.getCreatedAt());
     }
-
 
     @DisplayName("채널에 저장된 메세지를 생성날짜 기준 내림차순으로 반환합니다.")
     @Test
