@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - part3-황지환-sprint7
+  workflow_dispatch:
 
 env:
   ECR_REPOSITORY_URI: ${{ vars.ECR_REPOSITORY_URI }}
